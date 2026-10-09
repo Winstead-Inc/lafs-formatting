@@ -1,4 +1,4 @@
-# OLAFS Edge Cases and Their Resolutions
+# LAFS Edge Cases and Their Resolutions
 
 Principle behind every entry: **the grammar decides when it can; heuristics decide only when it can't; uncertainty fails open.** An unrecognized container costs a little formatting. An invented container can corrupt layout or meaning.
 
@@ -165,7 +165,7 @@ Detaching an opener inserts a newline between head and opener. Three hazard clas
 - `else if (B)` is one clause head. `case X:` / `default:` labels are heads of their item, not containers.
 - **Seam** `)(`, `)[`: second opener starts a new line with empty head and base indent.
 - **Join contexts** (Go, any parser that ends the statement on `}`/`)` + newline): continuation stays on the closer line, so the next opener is Hybrid: `} else {`.
-- **Ternaries / `&&`/`||`/`?:` expressions spanning lines:** operators are text; they stay at the start/end of a head as authored; OLAFS does not reflow expressions.
+- **Ternaries / `&&`/`||`/`?:` expressions spanning lines:** operators are text; they stay at the start/end of a head as authored; LAFS does not reflow expressions.
 - **Arrow functions:** `(Args) =>` is the head; a following `{` detaches below it. A newline *before* `=>` is illegal in JS/TS; never produce it.
 
 ## H. Identical-glyph and keyword-pair containers
@@ -245,7 +245,7 @@ Verbatim: lockfiles (`package-lock.json`, `Cargo.lock`, `yarn.lock`), minified b
 
 - Reformat only what you write or change unless asked for a whole-file pass.
 - When a change alters a container's state (a comment added, a line grew past the Canvas), re-lay out that container and its direct parent, nothing else.
-- When asked to **port or rewrite** into OLAFS, preserve tokens and comments; run the checklist; report states you chose where it wasn't obvious (Hybrid forced, a run broken by a label).
+- When asked to **port or rewrite** into LAFS, preserve tokens and comments; run the checklist; report states you chose where it wasn't obvious (Hybrid forced, a run broken by a label).
 - If CI enforces another formatter, say so once and ask before diverging.
 
 ## R. Cross-language hazard quick reference

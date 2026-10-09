@@ -1,4 +1,4 @@
-# OLAFS Normative Specification (resolved edition)
+# LAFS Normative Specification (resolved edition)
 
 Status: consolidated and conflict-free. Where the older source text contradicted itself, §11 records which statement won and why. **Monolith First** is the tie-breaker everywhere.
 
@@ -23,7 +23,7 @@ Status: consolidated and conflict-free. Where the older source text contradicted
 
 1. **Geometry over compactness.** Every container is a room with walls. Its opener and closer are load-bearing columns.
 2. **Binary honesty.** A container is flat and sealed (Monolith) or fully structured (Symmetry). No hybrids of hugging and detaching, except where a parser forces it, and then with the same column discipline.
-3. **Vertical economy without hugging.** The valid objection to strict Allman is wasted lines. OLAFS answers it with Monolith First and Container Grouping, never with end-of-line openers.
+3. **Vertical economy without hugging.** The valid objection to strict Allman is wasted lines. LAFS answers it with Monolith First and Container Grouping, never with end-of-line openers.
 4. **Whitespace is cognitive fuel.** Breaks mark concept boundaries; indentation marks nesting; matched closers give closure.
 5. **Language-agnostic.** The unit of the style is the *container*, not the brace. Any matched pair of tokens that encloses code or data is subject to the same laws.
 6. **Do no harm.** Formatting must never change meaning. When the style and the parser disagree, the parser wins.

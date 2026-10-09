@@ -1,4 +1,4 @@
-# OLAFS Language Guide
+# LAFS Language Guide
 
 How the laws apply to specific languages: whether an opener may detach, what glue exists, hazards, and examples. Applies the rules in `specification.md`; resolves the edge cases in `edge-cases.md`.
 
@@ -160,7 +160,7 @@ let Handler = move |Request: Request_Context|
 
 - Free detach. C#: attributes `[Name(Args)]` (bracket + paren), object/collection initializers `new T { A = 1 }`, switch expressions, records `record R(int A);`, string interpolation `$"…{X}…"`, raw strings `"""…"""`, verbatim `@"…"`, `#region`/`#if`. Java: annotations `@A(…)`, generics with wildcards `<? extends T>`, diamond `<>`, lambdas `->`, text blocks `"""` (Verbatim), `switch` arrow forms.
 - **Angles** use the follow-token test (`F(G<A, B>(7))`). **Properties** `{ get; set; }` are Monolith if fit.
-- **Naming:** C# already PascalCase for methods/properties; locals/params PascalCase per OLAFS. Java: keep bean accessors (`getX`/`setX`/`isX`), `toString`, `equals`, `hashCode`, annotation members, JUnit/Spring names; types Pascal_Snake_Case for your own.
+- **Naming:** C# already PascalCase for methods/properties; locals/params PascalCase per LAFS. Java: keep bean accessors (`getX`/`setX`/`isX`), `toString`, `equals`, `hashCode`, annotation members, JUnit/Spring names; types Pascal_Snake_Case for your own.
 
 ## I. Dart (§Dart)
 

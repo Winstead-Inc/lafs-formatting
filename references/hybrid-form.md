@@ -19,7 +19,7 @@ Load this file whenever you are about to emit a Hybrid layout (opener left on th
 
 ## 1. Position
 
-Allman-shaped OLAFS is the layout that fits how a human reader's visual system works: the opener and closer share a column, so the eye drops straight down a rail and sees a closed rectangle (translational symmetry, Gestalt closure, no horizontal scanning to find where a block starts). K&R's end-of-line opener is a compression-era artifact: it saved lines on 24-row terminals. Its prevalence is history, inertia and tooling, not evidence that it reads better.
+Allman-shaped LAFS is the layout that fits how a human reader's visual system works: the opener and closer share a column, so the eye drops straight down a rail and sees a closed rectangle (translational symmetry, Gestalt closure, no horizontal scanning to find where a block starts). K&R's end-of-line opener is a compression-era artifact: it saved lines on 24-row terminals. Its prevalence is history, inertia and tooling, not evidence that it reads better.
 
 **Popularity is not an argument. It will never be an argument in the first place.**
 

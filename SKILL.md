@@ -1,12 +1,12 @@
 ---
-name: olafs-formatting
-description: "OLAFS (Omniversal Language-Agnostic Formatting Style, also called Improvised Allman Style / IAS): the user's mandatory formatting philosophy for ALL code, markup, queries, configuration and structured data in ANY language. Use this skill whenever you write, edit, review, reformat, port or explain code or data, even for a three-line snippet, and whenever the user mentions OLAFS, IAS, Allman, K&R, Monolith, one-liner, Container Grouping, Simplified or Expanded Symmetry, Hybrid exception, container formatting, brace/bracket/paren placement, PascalCase or Pascal_Snake_Case naming, hex color codes, the yellow ban, or building/reviewing a formatter for this style. It decides, for every container ( ) { } [ ] < > tags template literals and keyword pairs, whether it is a one-line Monolith, a Grouped compound like [{( )}], a fully Expanded hierarchy, a parser-forced Hybrid, or Verbatim. Read it before producing any code, not after."
+name: lafs-formatting
+description: "LAFS (Language-Agnostic Formatting Style, formerly OLAFS, also called Improvised Allman Style / IAS): the user's mandatory formatting philosophy for ALL code, markup, queries, configuration and structured data in ANY language. Use this skill whenever you write, edit, review, reformat, port or explain code or data, even for a three-line snippet, and whenever the user mentions LAFS, OLAFS, IAS, Allman, K&R, Monolith, one-liner, Container Grouping, Simplified or Expanded Symmetry, Hybrid exception, container formatting, brace/bracket/paren placement, PascalCase or Pascal_Snake_Case naming, hex color codes, the yellow ban, or building/reviewing a formatter for this style. It decides, for every container ( ) { } [ ] < > tags template literals and keyword pairs, whether it is a one-line Monolith, a Grouped compound like ([ ]), a fully Expanded hierarchy, a parser-forced Hybrid, or Verbatim. Read it before producing any code, not after."
 ---
-# OLAFS: Omniversal Language-Agnostic Formatting Style
+# LAFS: Language-Agnostic Formatting Style
 
 ## Why this style exists
 
-Code is read as geometry. The eye follows vertical columns and bounded rectangles, so every container (anything with an opener and a closer) should be either **one sealed line** or **a rectangle whose top and bottom edges sit in the same column**. The styles this replaces fail in two ways. K&R hangs the opener on the end of a line (a "floating anchor" whose column depends on the text before it) and piles closers into clumps like `}});`. Dogmatic Allman wastes vertical space. OLAFS keeps Allman's symmetry and wins the space back by flattening anything that fits (Monolith) and fusing nested wrappers into one compound (Container Grouping).
+Code is read as geometry. The eye follows vertical columns and bounded rectangles, so every container (anything with an opener and a closer) should be either **one sealed line** or **a rectangle whose top and bottom edges sit in the same column**. The styles this replaces fail in two ways. K&R hangs the opener on the end of a line (a "floating anchor" whose column depends on the text before it) and piles closers into clumps like `}});`. Dogmatic Allman wastes vertical space. LAFS keeps Allman's symmetry and wins the space back by flattening anything that fits (Monolith) and fusing nested wrappers into one compound (Container Grouping).
 
 Whitespace is cognitive fuel: line breaks mark conceptual boundaries, indentation shows nesting, and a matched closer gives the brain its "closure". Never cram; never waste.
 
@@ -26,7 +26,7 @@ Whitespace is cognitive fuel: line breaks mark conceptual boundaries, indentatio
 4. **This skill.**
 5. **Community convention**, only to fill gaps this skill is silent on (import order, license headers, Python's indentation blocks).
 
-When editing someone else's file, apply OLAFS to the code you write or change and leave untouched lines alone, unless asked to reformat the whole file. If CI enforces a different formatter, say so once and ask; default to OLAFS.
+When editing someone else's file, apply LAFS to the code you write or change and leave untouched lines alone, unless asked to reformat the whole file. If CI enforces a different formatter, say so once and ask; default to LAFS.
 
 ## The five states
 
@@ -68,21 +68,21 @@ Priority: **Monolith ≻ Grouped ≻ Expanded**. Hybrid substitutes for Grouped/
 
 A container may fuse with its child **only if its entire content, ignoring whitespace and whitelisted glue, is exactly that one child**. Texts, labels (`"Courses":`, `children:`), comments or a second item between them break the run.
 
-```
+```typescript
 InitializeCoreEngine
-[{(
+([
     // Order matters: security first
     "SecurityModule",
     "DatabaseDriver",
     "RoutingInterface"
-)}]
+]);
 ```
 
 - A parent with two or more items is **not** a chain link. It expands, each item on its own line, and each item decides for itself (Monolith, Grouped, Expanded). Commas there are item separators on each item's closer line (`},`) and never join a closing run.
 - Glue between closers (a trailing comma on a **sole** child: `},])`) is allowed; with ≥ 2 items it never is.
 - Grouping is **local**: a separated inner container does not force its ancestors apart, and the outer closers fuse again afterwards. Grouping is a property of a boundary run, not of a container.
 - Never fuse across different detach policies, and by default never fuse angle brackets `< >`.
-- Monolith is checked first: if the whole chain fits and has no forced break, write `Name[{("A", "B")}]` on one line.
+- Monolith is checked first: if the whole chain fits and has no forced break, write `InitializeCoreEngine([ "SecurityModule", "DatabaseDriver" ])` on one line.
 
 ## Hybrid in thirty seconds
 
