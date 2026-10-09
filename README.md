@@ -6,6 +6,7 @@
 [![Format: Language--Agnostic](https://img.shields.io/badge/Language-Agnostic-3D5AFE.svg?style=flat-square)](#)
 [![Agent Skill: Ready](https://img.shields.io/badge/Agent_Skill-Antigravity%20%7C%20Claude%20%7C%20Copilot-00E676.svg?style=flat-square)](#)
 [![Geometry: Symmetrical](https://img.shields.io/badge/Geometry-Translational_Symmetry-C77DFF.svg?style=flat-square)](#)
+[![License: CC BY-ND 4.0](https://img.shields.io/badge/License-CC_BY--ND_4.0-FC6A03.svg?style=flat-square)](LICENSE)
 
 ---
 
@@ -319,4 +320,4 @@ All LAFS parameters are configurable via project-level configuration:
 
 Contributions, edge-case evaluations, and language profile extensions are welcome! Please open an issue or pull request in the [GitHub Repository](https://github.com/Winstead-Inc/olafs-formatting).
 
-Distributed under the [MIT License](LICENSE).
+Distributed under the [Creative Commons Attribution-NoDerivatives 4.0 International License (CC BY-ND 4.0)](LICENSE) with an unrestricted implementation grant for software, formatters, and AI runtimes.

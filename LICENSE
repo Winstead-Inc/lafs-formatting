@@ -1,21 +1,98 @@
-MIT License
+LAFS Specification & Agent Skill License
 
 Copyright (c) 2026 Winstead-Inc
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+This work—including the Language-Agnostic Formatting Style (LAFS) specification,
+SKILL.md definition, and reference manuals—is licensed under the 
+Creative Commons Attribution-NoDerivatives 4.0 International Public License (CC BY-ND 4.0).
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+================================================================================
+GRANT OF RIGHTS & CORE PHILOSOPHY PROTECTION
+================================================================================
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+1. UNRESTRICTED USE & INTEGRATION:
+   You are free to:
+   - Share, copy, host, and redistribute this material in any medium or format.
+   - Use, install, and execute this skill within any AI agent runtime (such as
+     Antigravity, Claude Code, GitHub Copilot, Cursor), IDE, editor, or CI/CD pipeline.
+   - Apply LAFS to any codebase, project, or organization for both commercial
+     and non-commercial purposes.
+
+2. INVARIANT CORE PHILOSOPHY & NON-DERIVATIVE RESTRICTION:
+   In accordance with the NoDerivatives (ND) terms of this license:
+   - The Core Philosophy, Cartesian Coordinate Vector Geometry, Cognitive Foundations,
+     and the Eight Invariant Laws (L1 through L8) are strictly INVARIANT.
+   - You may NOT distribute modified versions, remixes, altered rulesets, or fragmented
+     derivatives of this specification, SKILL.md, or its reference manuals.
+   - You may not distort, dilute, or contradict the foundational principles (such as
+     the Binary State Model, Translational Symmetry, or Anti-Hugging laws) in any
+     distributed derivative claiming compliance with, or derived from, this work.
+   - The name "Language-Agnostic Formatting Style", "LAFS", and associated official
+     standards terminology may not be used to endorse, brand, or promote incompatible
+     modifications.
+
+3. SOFTWARE & TOOL IMPLEMENTATION GRANT:
+   Nothing in this license limits or restricts anyone from creating, writing, and
+   distributing software implementations (such as automated formatters, AST transforms,
+   linters, editor extensions, or compiler plugins) that parse, format, or validate
+   code according to this standard. Original software implementations may be released
+   under any open source or proprietary license of the author's choice.
+
+================================================================================
+CREATIVE COMMONS ATTRIBUTION-NODERIVATIVES 4.0 INTERNATIONAL
+================================================================================
+
+By exercising the Licensed Rights, You accept and agree to be bound by the terms
+and conditions of this Creative Commons Attribution-NoDerivatives 4.0 International
+Public License ("Public License").
+
+Section 1 – Definitions.
+a. Adapted Material means material subject to Copyright and Similar Rights that is
+   derived from or based upon the Licensed Material and in which the Licensed
+   Material is translated, altered, arranged, transformed, or otherwise modified.
+b. Licensed Material means the artistic or literary work, database, or other material
+   to which the Licensor applied this Public License.
+c. Licensed Rights means the rights granted to You subject to the terms and
+   conditions of this Public License.
+d. Licensor means Winstead-Inc.
+e. Share means to provide material to the public by any means or process that requires
+   permission under the Licensed Rights, such as reproduction, public display,
+   public performance, distribution, dissemination, communication, or importation.
+
+Section 2 – Scope.
+a. License grant.
+   Subject to the terms and conditions of this Public License, the Licensor hereby
+   grants You a worldwide, royalty-free, non-sublicensable, non-exclusive,
+   irrevocable license to exercise the Licensed Rights in the Licensed Material to:
+   1. reproduce and Share the Licensed Material, in whole or in part; and
+   2. produce and reproduce, but not Share, Adapted Material.
+b. Exceptions and Limitations. For the avoidance of doubt, where Exceptions and
+   Limitations apply to Your use, this Public License does not apply.
+c. Term. The term of this Public License is specified in Section 6(a).
+
+Section 3 – License Conditions.
+Your exercise of the Licensed Rights is expressly made subject to the following:
+a. Attribution.
+   If You Share the Licensed Material, You must:
+   1. retain identification of the creator(s) of the Licensed Material and any
+      others designated to receive attribution (Winstead-Inc);
+   2. retain a copyright notice;
+   3. retain a notice that refers to this Public License;
+   4. indicate if You modified the Licensed Material and retain an indication of
+      any previous modifications.
+b. NoDerivatives.
+   If You Share Adapted Material that You produce, You may not distribute or Share
+   the Adapted Material.
+
+Section 4 – Disclaimer of Warranties and Limitation of Liability.
+Unless otherwise separately undertaken by the Licensor, to the maximum extent
+possible, the Licensor offers the Licensed Material as-is and as-available, and
+makes no representations or warranties of any kind concerning the Licensed Material.
+
+Section 5 – Termination.
+This Public License applies for the term of the Copyright and Similar Rights licensed
+here. However, if You fail to comply with this Public License, then Your rights
+under this Public License terminate automatically.
+
+To view the full legal code of this license, visit:
+https://creativecommons.org/licenses/by-nd/4.0/legalcode
