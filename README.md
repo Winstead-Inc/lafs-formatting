@@ -258,7 +258,7 @@ Clone or copy this repository into your project's `.agents/skills/` directory:
 
 ```bash
 mkdir -p .agents/skills
-git clone https://github.com/Winstead-Inc/olafs-formatting.git .agents/skills/lafs-formatting
+git clone https://github.com/Winstead-Inc/LAFS-formatting.git .agents/skills/lafs-formatting
 ```
 
 #### Global Installation (User-Wide)
@@ -267,10 +267,10 @@ To make LAFS available across all workspaces on your machine:
 
 ```bash
 # For Antigravity / Gemini agents:
-git clone https://github.com/Winstead-Inc/olafs-formatting.git ~/.gemini/config/skills/lafs-formatting
+git clone https://github.com/Winstead-Inc/LAFS-formatting.git ~/.gemini/config/skills/lafs-formatting
 
 # For Claude Code agents:
-git clone https://github.com/Winstead-Inc/olafs-formatting.git ~/.claude/skills/lafs-formatting
+git clone https://github.com/Winstead-Inc/LAFS-formatting.git ~/.claude/skills/lafs-formatting
 ```
 
 When installed, AI pair programmers automatically inspect [`SKILL.md`](./SKILL.md) and apply LAFS principles to all generated and reformatted code.
@@ -318,6 +318,6 @@ All LAFS parameters are configurable via project-level configuration:
 
 ## Contributing & License
 
-Contributions, edge-case evaluations, and language profile extensions are welcome! Please open an issue or pull request in the [GitHub Repository](https://github.com/Winstead-Inc/olafs-formatting).
+Contributions, edge-case evaluations, and language profile extensions are welcome! Please open an issue or pull request in the [GitHub Repository](https://github.com/Winstead-Inc/LAFS-formatting).
 
 Distributed under the [Creative Commons Attribution-NoDerivatives 4.0 International License (CC BY-ND 4.0)](LICENSE) with an unrestricted implementation grant for software, formatters, and AI runtimes.

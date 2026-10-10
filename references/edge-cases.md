@@ -263,3 +263,10 @@ Verbatim: lockfiles (`package-lock.json`, `Cargo.lock`, `yarn.lock`), minified b
 | Heredoc body after the line | shell, Ruby, PHP, Perl | line-pin |
 | Whitespace-significant text | HTML, JSX, Markdown, template text | never reflow |
 | Case changes meaning | Go exports, Ruby constants, Haskell/Elm, Erlang/Prolog | exception protocol (spec §9.2) |
+## S. Rust Specific Token Spacing Edge Cases
+
+| Hazard | Where | Rule |
+|---|---|---|
+| Lifetimes (e.g., 'a) | Rust | No whitespace gap between ' and lifetime identifier (). |
+| Raw Strings (e.g., #"..."#) | Rust | No whitespace gap between , #, and "". |
+| xtern keywords (e.g., xtern "C") | Rust | Must have whitespace gap between xtern and the following literal or keyword. |

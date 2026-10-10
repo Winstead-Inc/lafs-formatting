@@ -1,12 +1,13 @@
 ---
-name: lafs-formatting
-description: "LAFS (Language-Agnostic Formatting Style, formerly OLAFS, also called Improvised Allman Style / IAS): the user's mandatory formatting philosophy for ALL code, markup, queries, configuration and structured data in ANY language. Use this skill whenever you write, edit, review, reformat, port or explain code or data, even for a three-line snippet, and whenever the user mentions LAFS, OLAFS, IAS, Allman, K&R, Monolith, one-liner, Container Grouping, Simplified or Expanded Symmetry, Hybrid exception, container formatting, brace/bracket/paren placement, PascalCase or Pascal_Snake_Case naming, hex color codes, the yellow ban, or building/reviewing a formatter for this style. It decides, for every container ( ) { } [ ] < > tags template literals and keyword pairs, whether it is a one-line Monolith, a Grouped compound like ([ ]), a fully Expanded hierarchy, a parser-forced Hybrid, or Verbatim. Read it before producing any code, not after."
+name: language-agnostic-standard-formatting-guideline
+description: >-
+  LAFS (Language-Agnostic Formatting Style, also called Improvised Allman Style / IAS): the user's mandatory formatting philosophy for ALL code, markup, queries, configuration and structured data in ANY language. Use this skill whenever you write, edit, review, reformat, port or explain code or data, even for a three-line snippet, and whenever the user mentions LAFS, IAS, Allman, K&R, Monolith, one-liner, Brace Grouping, Simplified or Expanded Symmetry, Hybrid exception, container formatting, brace/bracket/paren placement, PascalCase or Pascal_Snake_Case naming, hex color codes, the yellow ban, or building/reviewing a formatter for this style. It decides, for every container ( ) { } [ ] < > tags template literals and keyword pairs, whether it is a one-line Monolith, a Grouped compound like [{( )}], a fully Expanded hierarchy, a parser-forced Hybrid, or Verbatim. Read it before producing any code, not after.
 ---
 # LAFS: Language-Agnostic Formatting Style
 
 ## Why this style exists
 
-Code is read as geometry. The eye follows vertical columns and bounded rectangles, so every container (anything with an opener and a closer) should be either **one sealed line** or **a rectangle whose top and bottom edges sit in the same column**. The styles this replaces fail in two ways. K&R hangs the opener on the end of a line (a "floating anchor" whose column depends on the text before it) and piles closers into clumps like `}});`. Dogmatic Allman wastes vertical space. LAFS keeps Allman's symmetry and wins the space back by flattening anything that fits (Monolith) and fusing nested wrappers into one compound (Container Grouping).
+Code is read as geometry. The eye follows vertical columns and bounded rectangles, so every container (anything with an opener and a closer) should be either **one sealed line** or **a rectangle whose top and bottom edges sit in the same column**. The styles this replaces fail in two ways. K&R hangs the opener on the end of a line (a "floating anchor" whose column depends on the text before it) and piles closers into clumps like `}});`. Dogmatic Allman wastes vertical space. LAFS keeps Allman's symmetry and wins the space back by flattening anything that fits (Monolith) and fusing nested wrappers into one compound (Brace Grouping).
 
 Whitespace is cognitive fuel: line breaks mark conceptual boundaries, indentation shows nesting, and a matched closer gives the brain its "closure". Never cram; never waste.
 
@@ -31,13 +32,13 @@ When editing someone else's file, apply LAFS to the code you write or change and
 ## The five states
 
 
-| State           | Other names                             | What it looks like                                                                 | When                                                                  |
-| ----------------- | ----------------------------------------- | ------------------------------------------------------------------------------------ | ----------------------------------------------------------------------- |
-| **1. Monolith** | One-Liner                               | whole container on one line                                                        | **Always tried first**                                                |
-| **2. Grouped**  | Simplified Symmetry, Container Grouping | fused compound opener`[{(` / mirrored closer `)}]` on dedicated lines, same column | Monolith failed and the container is a link in a Sole-Child Chain     |
-| **3. Expanded** | Expanded Symmetry, Hierarchical         | opener alone, items one per line, closer alone, same column                        | Monolith failed, no chain                                             |
-| **4. Hybrid**   | Column-Anchored Hybrid (Allman + K&R)   | opener stays on the head line; content and closer anchor to the**opener's column** | Only where the parser/compiler forbids a detached opener              |
-| **5. Verbatim** |                                         | bytes untouched                                                                    | strings, template text, heredocs, generated code, quarantined regions |
+| State           | Other names                           | What it looks like                                                                 | When                                                                  |
+| ----------------- | --------------------------------------- | ------------------------------------------------------------------------------------ | ----------------------------------------------------------------------- |
+| **1. Monolith** | One-Liner                             | whole container on one line                                                        | **Always tried first**                                                |
+| **2. Grouped**  | Simplified Symmetry, Brace Grouping   | fused compound opener`[{(` / mirrored closer `)}]` on dedicated lines, same column | Monolith failed and the container is a link in a Sole-Child Chain     |
+| **3. Expanded** | Expanded Symmetry, Hierarchical       | opener alone, items one per line, closer alone, same column                        | Monolith failed, no chain                                             |
+| **4. Hybrid**   | Column-Anchored Hybrid (Allman + K&R) | opener stays on the head line; content and closer anchor to the**opener's column** | Only where the parser/compiler forbids a detached opener              |
+| **5. Verbatim** |                                       | bytes untouched                                                                    | strings, template text, heredocs, generated code, quarantined regions |
 
 Priority: **Monolith ≻ Grouped ≻ Expanded**. Hybrid substitutes for Grouped/Expanded when the language forces it. No other layout exists: **no half-states**. A container is sealed on one line, or detached with symmetric columns, or Hybrid with symmetric columns. "Commit or quit."
 
@@ -53,7 +54,7 @@ Priority: **Monolith ≻ Grouped ≻ Expanded**. Hybrid substitutes for Grouped/
 ## The laws (checkable; verify them on your output)
 
 
-| Law Name        | Law                                                                                                                                                     |
+|                 | Law                                                                                                                                                     |
 | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | L1 Anti-Hug     | Outside a Monolith, no opener ends a line that has head text before it. Only Hybrid may.                                                                |
 | L2 Parity       | For every non-Monolith container or run:`column(opener) == column(closer)`. Sole exception: the last-resort concession layout in `hybrid-form.md` (H6). |
@@ -64,25 +65,25 @@ Priority: **Monolith ≻ Grouped ≻ Expanded**. Hybrid substitutes for Grouped/
 | L7 Preservation | Tokens, comments (text and order) and verbatim bytes are unchanged.                                                                                     |
 | L8 Idempotence  | Formatting the output again changes nothing.                                                                                                            |
 
-## Sole-Child Chain (Container Grouping) in thirty seconds
+## Sole-Child Chain (Brace Grouping) in thirty seconds
 
 A container may fuse with its child **only if its entire content, ignoring whitespace and whitelisted glue, is exactly that one child**. Texts, labels (`"Courses":`, `children:`), comments or a second item between them break the run.
 
-```typescript
+```
 InitializeCoreEngine
-([
+[{(
     // Order matters: security first
     "SecurityModule",
     "DatabaseDriver",
     "RoutingInterface"
-]);
+)}]
 ```
 
 - A parent with two or more items is **not** a chain link. It expands, each item on its own line, and each item decides for itself (Monolith, Grouped, Expanded). Commas there are item separators on each item's closer line (`},`) and never join a closing run.
 - Glue between closers (a trailing comma on a **sole** child: `},])`) is allowed; with ≥ 2 items it never is.
 - Grouping is **local**: a separated inner container does not force its ancestors apart, and the outer closers fuse again afterwards. Grouping is a property of a boundary run, not of a container.
 - Never fuse across different detach policies, and by default never fuse angle brackets `< >`.
-- Monolith is checked first: if the whole chain fits and has no forced break, write `InitializeCoreEngine([ "SecurityModule", "DatabaseDriver" ])` on one line.
+- Monolith is checked first: if the whole chain fits and has no forced break, write `Name[{("A", "B")}]` on one line.
 
 ## Hybrid in thirty seconds
 
@@ -137,14 +138,14 @@ else
 | Acronyms                                                                           | stay fully capitalized inside the convention                   | `GetHTTPResponse`, `TargetURL`, `URLGrabber`, `XMLHTTPRequest`, `HTTP_Request_Payload`, `FETCH_TIMEOUT_MS` |
 | Language keywords/literals                                                         | untouched lowercase (or the language's own case: Python`True`) | `if`, `return`                                                                                             |
 
-Why: Every user-defined token starts with a capital, so keywords (lowercase) and your own names are visually separated; the three shapes tell you at a glance whether a name is logic, a blueprint, or a fixed constant.
+Why: every user-defined token starts with a capital, so keywords (lowercase) and your own names are visually separated; the three shapes tell you at a glance whether a name is logic, a blueprint, or a fixed constant.
 
 **Exception protocol.** If capitalizing would change behavior or break something outside the file, keep the original form. Rule of thumb: *if something other than your own code finds, binds, serializes or reflects the name, don't rename it.* Typical cases: external/stdlib/framework APIs; wire-format keys (JSON, protobuf, headers); DB columns; FFI/exports; entry points (`main`, `__init__`, `setUp`); framework lifecycle overrides (`build`, `onCreate`, `toString`); test discovery (`test_*`, `TestXxx`); JavaBean accessors; React hooks (`useX`); Go unexported package-level names (capitalizing exports them); Ruby/Elixir/Haskell/Prolog cases where initial capitals change meaning (constant, module, type, variable). Linters that only warn (Rust `non_snake_case`, Dart `non_constant_identifier_names`, Python N-series) are silenced with the language's allow/ignore directive, never obeyed at the cost of this convention. Details: `specification.md` §9.
 
 ## Color policy
 
 - **Yellow is banned** in code, themes, UI, charts, icons, badges, alerts, diagrams and your own prose examples: Yellow, Gold, Amber, Chartreuse, Mustard, Olive Yellow, Light Yellow, any hue 45° to 65° in HSL, and these hex values: `#FFFF00`, `#FFD700`, `#BB7B00`, `#FEF8E7`, `#FFF000`. Avoid CSS names `yellow`, `gold`, `khaki`, `lightyellow`, `lemonchiffon`, `palegoldenrod`, `goldenrod`.
-- **Use instead.** Warnings: Orange `#FC6A03`. Errors: Bright Red `#FF1744`. Highlights: Cyan `#00E5FF`. Accents and ratings: Azure `#00BFFF`, Emerald `#00E676`, Violet `#C77DFF`, Indigo `#3D5AFE`.
+- **Use instead.** Warnings: Orange `#FC6A03`. Errors: Bright Red `#FF1744` (or `#FF4081` Pink/Magenta). Highlights: Cyan `#00E5FF`. Accents and ratings: Azure `#00BFFF`, Emerald `#00E676`, Violet `#C77DFF`, Indigo `#3D5AFE`.
 - **Hex codes are always uppercase**: `#00E5FF`, never `#00e5ff`.
 - If the user explicitly asks for yellow in a request, say it contradicts their style, offer the nearest approved color, and use yellow only if they confirm. Don't alter yellow in code you weren't asked to touch; mention it.
 
@@ -247,3 +248,4 @@ Items.Where((Item) => Item.IsActive).Select
 - `references/edge-cases.md`: `<`/`>`, unpaired characters, comments, strings/templates/heredocs, preprocessors, markup, embedded languages, broken or partial code, Unicode/tabs, huge data, token repairs, generated files.
 - `references/language-guide.md`: detach-safety matrix and per-language profiles with examples; procedure for unknown languages.
 - `references/hybrid-form.md`: why Hybrid exists, the short-head rule, the Void limits, the Head Reduction Ladder, the concession layout, per-language handling, and how to talk about it.
+- `references/why-LAFS-beats-knr.md` & `references/why-olafs-beats-knr.md`: the formal case (metrics, theorems, geometry, cost model, "Worse is Better"). Read it only when the user asks you to justify or argue the style.

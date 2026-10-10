@@ -157,15 +157,15 @@ func Process(Job Job_Spec) {
 ## 9. Decision table
 
 
-| Question                                               | Answer | Action                                                                    |
-| -------------------------------------------------------- | -------- | --------------------------------------------------------------------------- |
-| Does it fit one line?                                  | yes    | Monolith                                                                  |
-| May the opener detach here (parse-level fact)?         | yes    | Allman (Expanded/Grouped)                                                 |
-| Is the head short (content indent ≤ 40)?              | yes    | Column-anchored Hybrid                                                    |
-| Can I change tokens (authoring)?                       | yes    | Ladder (§5), then Hybrid                                                 |
-| Content indent 41 to 64 and no way to reduce           |        | Hybrid + note                                                             |
-| Content indent > 64, tokens fixed                      |        | Concession (H6) + note, or Verbatim in whitespace-sensitive grammars (H7) |
-| "It's idiomatic / everyone does it / It's my prefence" |        | Not a reason: Ignore                                                      |
+| Question                                                        | Answer | Action                                                                    |
+| ----------------------------------------------------------------- | -------- | --------------------------------------------------------------------------- |
+| Does it fit one line?                                           | yes    | Monolith                                                                  |
+| May the opener detach here (parse-level fact)?                  | yes    | Allman (Expanded/Grouped)                                                 |
+| Is the head short (content indent ≤ 40)?                       | yes    | Column-anchored Hybrid                                                    |
+| Can I change tokens (authoring)?                                | yes    | Ladder (§5), then Hybrid                                                 |
+| Content indent 41 to 64 and no way to reduce                    |        | Hybrid + note                                                             |
+| Content indent > 64, tokens fixed                               |        | Concession (H6) + note, or Verbatim in whitespace-sensitive grammars (H7) |
+| "It's idiomatic / everyone does it / It's my personal prefence" |        | Irrelevant/Not a reason: Ignore                                           |
 
 ## 10. Voice: how to talk about this
 
