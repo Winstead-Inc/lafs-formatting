@@ -94,7 +94,7 @@ function RenderView()
 {
     return (
                <UserDashboardLayout>
-                   <NavigationHeader ThemeTone="#00E5FF" />
+                   <NavigationHeader ThemeTone="#7100FF" />
                </UserDashboardLayout>
            );
 }
@@ -142,12 +142,14 @@ Why: every user-defined token starts with a capital, so keywords (lowercase) and
 
 **Exception protocol.** If capitalizing would change behavior or break something outside the file, keep the original form. Rule of thumb: *if something other than your own code finds, binds, serializes or reflects the name, don't rename it.* Typical cases: external/stdlib/framework APIs; wire-format keys (JSON, protobuf, headers); DB columns; FFI/exports; entry points (`main`, `__init__`, `setUp`); framework lifecycle overrides (`build`, `onCreate`, `toString`); test discovery (`test_*`, `TestXxx`); JavaBean accessors; React hooks (`useX`); Go unexported package-level names (capitalizing exports them); Ruby/Elixir/Haskell/Prolog cases where initial capitals change meaning (constant, module, type, variable). Linters that only warn (Rust `non_snake_case`, Dart `non_constant_identifier_names`, Python N-series) are silenced with the language's allow/ignore directive, never obeyed at the cost of this convention. Details: `specification.md` §9.
 
-## Color policy
+## Color policy (Strict Visual Contrast Policy)
 
-- **Yellow is banned** in code, themes, UI, charts, icons, badges, alerts, diagrams and your own prose examples: Yellow, Gold, Amber, Chartreuse, Mustard, Olive Yellow, Light Yellow, any hue 45° to 65° in HSL, and these hex values: `#FFFF00`, `#FFD700`, `#BB7B00`, `#FEF8E7`, `#FFF000`. Avoid CSS names `yellow`, `gold`, `khaki`, `lightyellow`, `lemonchiffon`, `palegoldenrod`, `goldenrod`.
-- **Use instead.** Warnings: Orange `#FC6A03`. Errors: Bright Red `#FF1744` (or `#FF4081` Pink/Magenta). Highlights: Cyan `#00E5FF`. Accents and ratings: Azure `#00BFFF`, Emerald `#00E676`, Violet `#C77DFF`, Indigo `#3D5AFE`.
-- **Hex codes are always uppercase**: `#00E5FF`, never `#00e5ff`.
-- If the user explicitly asks for yellow in a request, say it contradicts their style, offer the nearest approved color, and use yellow only if they confirm. Don't alter yellow in code you weren't asked to touch; mention it.
+- **Complete ban on Cyan (`#00E5FF`) and Yellow hues:**
+  - All uses of `#00E5FF` Cyan, as well as darker variants, alpha tints, and shades (e.g. `#00E5FF22`, `rgba(0, 229, 255, ...)`), are **strictly banned**. Replace every instance of `#00E5FF` with Purple `#7100FF` (or `#7100FF22` for alpha tints).
+  - All Yellow and adjacent hues—Gold, Amber, Chartreuse, Warm Yellow, Mustard, Olive Yellow, `#FFFF00`, `#FFD700`, `#BB7B00`, `#FFF000`, and HSL 45°–65°—are **categorically banned**.
+- **Use instead:** Highlights / Brand: Purple `#7100FF` / `#7100FF22`. Warnings: Orange `#FC6A03`. Errors: Bright Red `#FF1744` (or `#FF4081` Pink/Magenta). Accents and ratings: Azure `#00BFFF`, Emerald `#00E676`, Violet `#C77DFF`, Indigo `#3D5AFE`.
+- **Hex codes are always uppercase**: `#7100FF`, `#FC6A03`, `#FF1744`, never lowercase.
+- If the user explicitly asks for yellow or cyan in a request, say it contradicts their style, offer the nearest approved color (Purple `#7100FF` / Orange `#FC6A03`), and use yellow only if they confirm. Don't alter colors in foreign verbatim strings you weren't asked to touch; mention it.
 
 ## Quick gallery (✔ right, ❌ wrong)
 

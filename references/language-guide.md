@@ -31,6 +31,7 @@ How the laws apply to specific languages: whether an opener may detach, what glu
 | Ruby, Kotlin, Swift, Scala, Lua, R, Julia, Groovy, Elixir | Hybrid at depth 0; usually Free inside enclosing parens | Join for `end`/`else` forms | 1 | ⚠ |
 | Haskell, F#, Elm, Idris, Nim (offside rule) | Hybrid (closer deeper than the layout column) | Join | 1 | ◐ |
 | Shell (sh/bash/zsh) | Free for function bodies and compound-command keywords; command arguments can't break without `\` (not allowed) → Monolith/Verbatim | Free | 4 (`;` is idiomatic) | ◐ |
+| Windows Batch (cmd.exe) | Hybrid (control blocks `if`, `for` require inline `(`) | Caret continuation `^` or Join | 1 | ✔ |
 | PowerShell | Hybrid (script block must follow the command on its line) | Free | 4 | ◐ |
 | HCL/Terraform | Hybrid (block `{` stays on the header line) | Free | 1 | ⚠ |
 | YAML | block style: don't touch; flow `[ ]`/`{ }`: Monolith, else Hybrid | n/a | n/a | ◐ |
@@ -217,7 +218,23 @@ Servers: [
 
 (`[` at column 9 ⇒ items 13, `]` 9; every continuation line is deeper than the parent key at column 0.) Anchors, tags, block scalars `|` `>`: Verbatim.
 
-**TOML.** Arrays: Monolith, else Hybrid (`Key = [` … `]` at the `[` column). Inline tables `{ a = 1 }`: Monolith only (TOML 1.0); if they don't fit, convert is *not* allowed (token change), so leave Verbatim and say so.
+**TOML & Cargo.lock.**
+- **Monolith First:** Arrays and inline tables that fit within the Canvas limit remain as a sealed single-line vector on the assignment line (`dependencies = ["chrono",]`, `package = { name = "app", version = "0.1.0" }`).
+- **Strict Parsers & Cargo.lock (Column-Anchored Hybrid):** Standard TOML 1.0 grammar (`keyval-sep = ws "=" ws`) treats a newline immediately following `=` as a syntax error (`error: key with no value, expected =`). In standard Cargo manifests and lockfiles, multi-line expanded arrays use **Column-Anchored Hybrid**: `[` stays inline on the assignment line, `]` anchors on the exact column coordinate of `[`, and child elements indent $+4$:
+  ```toml
+  dependencies = [
+                     "chrono",
+                     "serde",
+                 ]
+  ```
+- **Patched Parsers & TOML 1.1 (Pure Detached Allman):** In environments where `toml_parser` / `toml_edit` is patched or TOML 1.1 relaxed whitespace is enabled, arrays and tables decouple cleanly onto dedicated lines with 100% pure Allman symmetry:
+  ```toml
+  dependencies =
+  [
+      "chrono",
+      "serde",
+  ]
+  ```
 
 **XML / HTML / Vue / Svelte.** Elements are containers; attributes are items; text content is whitespace-sensitive (never reflow).
 
@@ -235,7 +252,7 @@ Servers: [
 **CSS / SCSS / Less.** `selector` head, `{` detaches, declarations are items separated by `;`. Monolith for small rules:
 
 ```
-.card { margin: 0; padding: 4px; color: #00E5FF; }
+.card { margin: 0; padding: 4px; color: #7100FF; }
 
 .card:hover
 {
@@ -267,9 +284,22 @@ GROUP BY UserAccountId;
 
 - **Ruby.** `do |x| … end`, `def … end`, `{ |x| … }`. A newline before `do` or `(` ends the call: Hybrid, `end` at the keyword's column (the column-anchored rule), Monolith `{ |X| Use(X) }` when it fits. Constants start uppercase and locals can't (a capital makes a constant): the naming exception applies to locals.
 - **Lua.** `then … end`, `do … end`, `function … end`. Newlines are whitespace but `F\n(X)` is a call-or-statement hazard ⇒ Hybrid for call parens; keyword openers `then`/`do` may sit alone (Free).
-- **Shell.** Functions `Name() { …; }` (note `;` before `}` when Monolith, a space after `{`), compound commands `if … then … fi`, `while … do … done`, `case … esac`, subshells `( )`, groups `{ ; }`, `$( )`, `${ }`, `$(( ))`, `[[ ]]`. `then`/`do` may be placed on their own lines. Arguments can't be broken without `\` (an inserted token) ⇒ Monolith or Verbatim. Heredocs are line-pinned. Env var names stay `UPPER_SNAKE` (contract).
+- **Shell (sh/bash/zsh).** Functions `Name() { …; }` (note `;` before `}` when Monolith, a space after `{`), compound commands `if … then … fi`, `while … do … done`, `case … esac`, subshells `( )`, groups `{ ; }`, `$( )`, `${ }`, `$(( ))`, `[[ ]]`. `then`/`do` may be placed on their own lines. Arguments can't be broken without `\` (an inserted token) ⇒ Monolith or Verbatim. Heredocs are line-pinned. Env var names stay `UPPER_SNAKE` (contract).
+- **Windows Batch / CMD (`.bat`, `.cmd`).** The legacy `cmd.exe` interpreter treats newlines before `(` as hard syntax errors for compound constructs (`if`, `for`). To eliminate vector skew and maintain strict vertical load paths, multi-line blocks use **Column-Anchored Hybrid** (or line continuation `^`):
+  ```cmd
+  if "%_arg:~0,2%"=="-J" (
+                             if "%_arg:~2%"=="" ( echo error: empty -J argument & goto error )
+                             set JAVA_OPTS=%JAVA_OPTS% "%_arg:~2%"
+                         ) ^
+  else (
+           if "%_arg:~0,2%"=="-D" ( set JAVA_OPTS=%JAVA_OPTS% "%_arg%" ) else ( set KOTLIN_OPTS=%KOTLIN_OPTS% "%_arg%" )
+       )
+  ```
+  `(` remains inline after the condition, closing `)` lands on the exact column coordinate of `(`, and inner commands indent $+4$.
 - **PowerShell.** Script blocks `{ }`, `@( )`, `@{ }`, `$( )`. Detached `{` after a pipeline element is a new statement ⇒ **Hybrid**. No backtick continuations.
-- **Kotlin, Swift, Scala.** A newline before `(` typically ends the statement: Hybrid at depth 0; trailing lambdas and `{` after `)`: Scala treats a single newline before `{` as a continuation, Kotlin/Swift generally want it on the head line ⇒ Hybrid unless certain. Generics `<T>` via the grammar. Monolith 1 statement.
+- **Kotlin, Swift, Scala.**
+  - **Kotlin:** Backtick identifiers (`` `identifier` ``) are verbatim identifiers, not containers. Multi-line parameter lists decouple parens `(` and `)` with translational column symmetry. Trailing lambdas outside calls decouple into detached `{` and `}` or Column-Anchored Hybrid. `when (X)` expressions decouple `{` and `}` onto their own lines.
+  - Swift and Scala: A newline before `(` typically ends the statement: Hybrid at depth 0; trailing lambdas and `{` after `)`: Scala treats a single newline before `{` as a continuation, Swift generally wants it on the head line ⇒ Hybrid unless certain. Generics `<T>` via the grammar. Monolith 1 statement.
 - **HCL/Terraform.** `resource "t" "n" {` keeps `{` on the header line (Hybrid); attributes are newline-terminated.
 - **Haskell, F#, Elm, Idris, Nim.** Offside rule: every continuation line must sit deeper than the construct's layout column. A closer at the base indent (Allman) can close the block ⇒ Hybrid with the closer at the opener's (deeper) column. `let … in`, `where`, `do` blocks are layout blocks, not containers. In Haskell/Elm, initial capitals mean constructors/types: **do not capitalize values or functions**: use the exception protocol (spec §9.2).
 - **Lisp family.** Every `( )` is a container; Free detach; Monolith First; Expanded puts a closer alone, which goes against community habit but follows the style. If the user's codebase is Lisp, mention the trade-off once.

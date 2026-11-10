@@ -293,15 +293,36 @@ Compiler/linters that merely *warn* about casing (Rust `non_snake_case`, Dart `n
 ### 9.3 Scope
 Applies to identifiers you define. It does not apply to string contents, file names, CSS classes, URL paths, env vars (`UPPER_SNAKE` stays), or documentation prose.
 
-## 10. Color policy
+## 10. Color policy (Strict Visual Contrast Policy)
 
-- **Banned absolutely:** Yellow, Gold, Amber, Chartreuse, Warm/Light Yellow, Mustard, Olive Yellow; HSL hue 45° to 65°; `#FFFF00`, `#FFD700`, `#BB7B00`, `#FEF8E7`, `#FFF000`; CSS names `yellow`, `gold`, `khaki`, `lightyellow`, `lemonchiffon`, `palegoldenrod`, `goldenrod`, `darkgoldenrod`.
+To maintain absolute visual clarity and eliminate ocular strain across dense structural geometry, LAFS enforces a strict color specification across all codebases, stylesheets, SVGs, IDE themes, UI designs, syntax tokens, badges, ratings, highlights, alerts, and documentation.
+
+### 10.1 Categorical Bans
+
+1. **Absolute Ban on Cyan (`#00E5FF`) and All Variants:**
+   - All uses of `#00E5FF` Cyan, as well as its darker variants, alpha tints, and shades (e.g., `#00E5FF22`, `rgba(0, 229, 255, ...)`, `#00B4D8`, etc.), are **STRICTLY BANNED AND FORBIDDEN**.
+   - Every instance of `#00E5FF` (and any of its darker variants or alpha shades) **MUST** be replaced with Purple `#7100FF` (or its corresponding darker variants / alpha tints such as `#7100FF22`, `rgba(113, 0, 255, 0.22)`, etc.).
+2. **Absolute Ban on Yellow and Adjacent Hues:**
+   - The color Yellow and adjacent hues—including Gold, Amber, Chartreuse, Warm Yellow, Mustard, Olive Yellow, Light Yellow, `#FFFF00`, `#FFD700`, `#BB7B00`, `#FEF8E7`, `#FFF000`, or any HSL range between `45°` and `65°`—are **CATEGORICALLY FORBIDDEN**.
+   - CSS color names `yellow`, `gold`, `khaki`, `lightyellow`, `lemonchiffon`, `palegoldenrod`, `goldenrod`, `darkgoldenrod` are strictly banned.
+3. **Hexadecimal Casing Mandate:**
+   - Always use **CAPITAL LETTERS** for hexadecimal color codes (e.g., `#7100FF`, `#7100FF22`, `#FFFFFF`, `#FC6A03`, `#FF1744`).
+
+### 10.2 Approved High-Contrast Palette
+
+| Semantic Role | Approved Color Name | Mandatory Hex / RGBA Code |
+|---|---|---|
+| **Primary Replacement for `#00E5FF` / Highlights** | Purple (and alpha/dark variants) | `#7100FF` / `#7100FF22` / `rgba(113, 0, 255, 0.22)` |
+| **Warnings** | Deep Orange | `#FC6A03` |
+| **Errors / Critical Alerts** | Bright Red | `#FF1744` (or `#FF4081` Pink/Magenta) |
+| **Accents / Ratings / Information** | Azure Blue | `#00BFFF` |
+| **Success / Positive Indicators** | Emerald Green | `#00E676` |
+| **Secondary Accents / Tokens** | Lavender / Violet | `#C77DFF` |
+| **Deep Structural Accents** | Indigo | `#3D5AFE` |
+
 - **Applies to:** code, syntax themes, UI, CSS variables, icons, badges, ratings, charts, diagrams, alerts, AI responses.
-- **Approved:** Warning Orange `#FC6A03`; Error Bright Red `#FF1744`; Pink/Magenta `#FF4081`; Highlight Cyan `#00E5FF`; Azure `#00BFFF`; Emerald `#00E676`; Violet `#C77DFF`; Indigo `#3D5AFE`.
-- **Case:** hex digits are uppercase, always.
-- **Contrast:** why yellow is banned: it lacks contrast on light themes and bleeds on dark ones.
-- **Conflicts:** a user request for yellow gets the "this contradicts your style, nearest approved color is X, confirm?" reply. Third-party or brand-mandated yellow in code you didn't author is left alone and mentioned, not silently changed.
-- Colors inside Verbatim text (strings you don't own) are not altered; colors you author are.
+- **Conflicts:** a user request for yellow or cyan gets the "this contradicts your style, nearest approved color is Purple `#7100FF` / Orange `#FC6A03`, confirm?" reply. Third-party or brand-mandated colors in foreign code you didn't author are left alone and mentioned, not silently changed.
+- Colors inside Verbatim text (external strings you don't own) are not altered; colors you author are.
 
 ## 11. Resolved-conflict register (superseded text → ruling)
 

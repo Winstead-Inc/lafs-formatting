@@ -2,7 +2,7 @@
 
 > **A cognitive-first, geometry-based code formatting standard and universal AI agent skill.**
 
-[![Standard: LAFS](https://img.shields.io/badge/Standard-LAFS-00E5FF.svg?style=flat-square)](#)
+[![Standard: LAFS](https://img.shields.io/badge/Standard-LAFS-7100FF.svg?style=flat-square)](#)
 [![Format: Language--Agnostic](https://img.shields.io/badge/Language-Agnostic-3D5AFE.svg?style=flat-square)](#)
 [![Agent Skill: Ready](https://img.shields.io/badge/Agent_Skill-Antigravity%20%7C%20Claude%20%7C%20Copilot-00E676.svg?style=flat-square)](#)
 [![Geometry: Symmetrical](https://img.shields.io/badge/Geometry-Translational_Symmetry-C77DFF.svg?style=flat-square)](#)
@@ -215,17 +215,20 @@ LAFS establishes a strict three-tier typographic pacing standard:
 
 ## Color Policy & Design Aesthetics
 
-LAFS enforces strict chromatic and accessibility guidelines across code, documentation, UI components, and charts:
+LAFS enforces strict chromatic and accessibility guidelines across code, documentation, UI components, syntax themes, and charts:
 
-* 🚫 **The Yellow Ban:** Colors in the 45°–65° HSL hue range are strictly prohibited (e.g., `#FFFF00`, `#FFD700`, `#BB7B00`, `#FFF000`).
-* 🎨 **Approved Palette:**
-  * **Warnings:** Vibrant Orange (`#FC6A03`)
+* 🚫 **Absolute Ban on Cyan (`#00E5FF`) & Yellow:**
+  * All uses of `#00E5FF` Cyan, darker variants, and alpha tints (`#00E5FF22`) are **strictly prohibited**. Every instance must use Purple `#7100FF` (or `#7100FF22` for alpha tints).
+  * Colors in the 45°–65° HSL hue range (Yellow, Gold, Amber, Chartreuse, Warm/Light Yellow, `#FFFF00`, `#FFD700`, `#BB7B00`, `#FFF000`) are **strictly prohibited**.
+* 🎨 **Approved High-Contrast Palette:**
+  * **Primary Highlights / Brand:** Purple (`#7100FF` / `#7100FF22`)
+  * **Warnings:** Vibrant Deep Orange (`#FC6A03`)
   * **Errors / Destructive:** Bright Red (`#FF1744`)
-  * **Highlights / Brand:** Electric Cyan (`#00E5FF`)
-  * **Information / Logic:** Azure Blue (`#00BFFF`)
-  * **Success / Safe:** Emerald Green (`#00E676`)
-  * **Special / Accents:** Violet (`#C77DFF`) or Indigo (`#3D5AFE`)
-* 🔤 **Uppercase Hex Codes:** Always write hex values in uppercase (`#00E5FF`, never `#00e5ff`).
+  * **Information / Accents:** Azure Blue (`#00BFFF`)
+  * **Success / Positive:** Emerald Green (`#00E676`)
+  * **Secondary Accents:** Lavender / Violet (`#C77DFF`)
+  * **Deep Structural Accents:** Indigo (`#3D5AFE`)
+* 🔤 **Uppercase Hex Codes:** Always write hex values in uppercase (`#7100FF`, `#FC6A03`, never lowercase `#7100ff`).
 
 ---
 
@@ -241,7 +244,7 @@ Before committing or outputting code, verify conformance:
 6. [ ] **Legitimate Hybrid:** Is every Hybrid forced by an actual parser requirement, with a short head (indent ≤ 40)?
 7. [ ] **Verbatim Text:** Are strings, comments, and regex literals strictly preserved?
 8. [ ] **Casing:** Are logic entities `PascalCase`, types `Pascal_Snake_Case`, and constants `SCREAMING_SNAKE_CASE`?
-9. [ ] **Zero Yellow:** Is all yellow excluded in favor of approved chromatic alternatives?
+9. [ ] **Zero Cyan & Yellow:** Are `#00E5FF` Cyan and all Yellow hues categorically excluded in favor of Purple `#7100FF` and approved chromatic alternatives?
 10. [ ] **Idempotence:** Would running the formatter again produce zero diff?
 
 ---
