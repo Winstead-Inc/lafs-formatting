@@ -1,7 +1,6 @@
 ---
 name: language-agnostic-standard-formatting-guideline
-description: >-
-  LAFS (Language-Agnostic Formatting Style, also called Improvised Allman Style / IAS): the user's mandatory formatting philosophy for ALL code, markup, queries, configuration and structured data in ANY language. Use this skill whenever you write, edit, review, reformat, port or explain code or data, even for a three-line snippet, and whenever the user mentions LAFS, IAS, Allman, K&R, Monolith, one-liner, Brace Grouping, Simplified or Expanded Symmetry, Hybrid exception, container formatting, brace/bracket/paren placement, PascalCase or Pascal_Snake_Case naming, hex color codes, the yellow ban, or building/reviewing a formatter for this style. It decides, for every container ( ) { } [ ] < > tags template literals and keyword pairs, whether it is a one-line Monolith, a Grouped compound like [{( )}], a fully Expanded hierarchy, a parser-forced Hybrid, or Verbatim. Read it before producing any code, not after.
+description: LAFS (Language-Agnostic Formatting Style, also called Improvised Allman Style / IAS): the user's mandatory formatting philosophy for ALL code, markup, queries, configuration and structured data in ANY language. Use this skill whenever you write, edit, review, reformat, port or explain code or data, even for a three-line snippet, and whenever the user mentions LAFS, IAS, Allman, K&R, Monolith, one-liner, Brace Grouping, Simplified or Expanded Symmetry, Hybrid exception, container formatting, brace/bracket/paren placement, PascalCase or Pascal_Snake_Case naming, hex color codes, the yellow ban, or building/reviewing a formatter for this style. It decides, for every container ( ) { } [ ] < > tags template literals and keyword pairs, whether it is a one-line Monolith, a Grouped compound like [{( )}], a fully Expanded hierarchy, a parser-forced Hybrid, or Verbatim. Read it before producing any code, not after.
 ---
 # LAFS: Language-Agnostic Formatting Style
 
@@ -31,14 +30,13 @@ When editing someone else's file, apply LAFS to the code you write or change and
 
 ## The five states
 
-
-| State           | Other names                           | What it looks like                                                                 | When                                                                  |
-| ----------------- | --------------------------------------- | ------------------------------------------------------------------------------------ | ----------------------------------------------------------------------- |
-| **1. Monolith** | One-Liner                             | whole container on one line                                                        | **Always tried first**                                                |
-| **2. Grouped**  | Simplified Symmetry, Brace Grouping   | fused compound opener`[{(` / mirrored closer `)}]` on dedicated lines, same column | Monolith failed and the container is a link in a Sole-Child Chain     |
-| **3. Expanded** | Expanded Symmetry, Hierarchical       | opener alone, items one per line, closer alone, same column                        | Monolith failed, no chain                                             |
+| State                 | Other names                           | What it looks like                                                                       | When                                                                  |
+| --------------------- | ------------------------------------- | ---------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| **1. Monolith** | One-Liner                             | whole container on one line                                                              | **Always tried first**                                          |
+| **2. Grouped**  | Simplified Symmetry, Brace Grouping   | fused compound opener`[{(` / mirrored closer `)}]` on dedicated lines, same column   | Monolith failed and the container is a link in a Sole-Child Chain     |
+| **3. Expanded** | Expanded Symmetry, Hierarchical       | opener alone, items one per line, closer alone, same column                              | Monolith failed, no chain                                             |
 | **4. Hybrid**   | Column-Anchored Hybrid (Allman + K&R) | opener stays on the head line; content and closer anchor to the**opener's column** | Only where the parser/compiler forbids a detached opener              |
-| **5. Verbatim** |                                       | bytes untouched                                                                    | strings, template text, heredocs, generated code, quarantined regions |
+| **5. Verbatim** |                                       | bytes untouched                                                                          | strings, template text, heredocs, generated code, quarantined regions |
 
 Priority: **Monolith ≻ Grouped ≻ Expanded**. Hybrid substitutes for Grouped/Expanded when the language forces it. No other layout exists: **no half-states**. A container is sealed on one line, or detached with symmetric columns, or Hybrid with symmetric columns. "Commit or quit."
 
@@ -53,17 +51,16 @@ Priority: **Monolith ≻ Grouped ≻ Expanded**. Hybrid substitutes for Grouped/
 
 ## The laws (checkable; verify them on your output)
 
-
-|                 | Law                                                                                                                                                     |
-| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| L1 Anti-Hug     | Outside a Monolith, no opener ends a line that has head text before it. Only Hybrid may.                                                                |
+|                 | Law                                                                                                                                                         |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| L1 Anti-Hug     | Outside a Monolith, no opener ends a line that has head text before it. Only Hybrid may.                                                                    |
 | L2 Parity       | For every non-Monolith container or run:`column(opener) == column(closer)`. Sole exception: the last-resort concession layout in `hybrid-form.md` (H6). |
-| L3 Return       | Every closer (or fused closer run) starts its own line. Suffix glue and a trailing comment may follow it.                                               |
-| L4 Indent       | Content sits one level (4 spaces) deeper than the anchor (the opener's column for Hybrid).                                                              |
-| L5 No-Partial   | Monolith ⇒ no newline inside. Non-Monolith ⇒ opener and closer on different lines.                                                                    |
-| L6 Mirror       | A fused run's closer is the exact reverse of its opener, adjacent characters, one column.                                                               |
-| L7 Preservation | Tokens, comments (text and order) and verbatim bytes are unchanged.                                                                                     |
-| L8 Idempotence  | Formatting the output again changes nothing.                                                                                                            |
+| L3 Return       | Every closer (or fused closer run) starts its own line. Suffix glue and a trailing comment may follow it.                                                   |
+| L4 Indent       | Content sits one level (4 spaces) deeper than the anchor (the opener's column for Hybrid).                                                                  |
+| L5 No-Partial   | Monolith ⇒ no newline inside. Non-Monolith ⇒ opener and closer on different lines.                                                                        |
+| L6 Mirror       | A fused run's closer is the exact reverse of its opener, adjacent characters, one column.                                                                   |
+| L7 Preservation | Tokens, comments (text and order) and verbatim bytes are unchanged.                                                                                         |
+| L8 Idempotence  | Formatting the output again changes nothing.                                                                                                                |
 
 ## Sole-Child Chain (Brace Grouping) in thirty seconds
 
@@ -129,14 +126,13 @@ else
 
 ## Naming (lexical layer)
 
-
-| Entity                                                                             | Convention                                                     | Examples                                                                                                   |
-| ------------------------------------------------------------------------------------ | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| Functions, methods, variables, parameters, modules, namespaces, fields, properties | `PascalCase`                                                   | `ExecuteTransaction`, `UserAccountConfiguration`                                                           |
-| Structs, enums, classes, interfaces/traits/protocols, type aliases, records        | `Pascal_Snake_Case`                                            | `Database_Connection_Pool`, `Network_Status_Code`                                                          |
-| Constants and statics (compile-time/immutable)                                     | `SCREAMING_SNAKE_CASE`                                         | `MAX_RETRY_THRESHOLD`                                                                                      |
-| Acronyms                                                                           | stay fully capitalized inside the convention                   | `GetHTTPResponse`, `TargetURL`, `URLGrabber`, `XMLHTTPRequest`, `HTTP_Request_Payload`, `FETCH_TIMEOUT_MS` |
-| Language keywords/literals                                                         | untouched lowercase (or the language's own case: Python`True`) | `if`, `return`                                                                                             |
+| Entity                                                                             | Convention                                                       | Examples                                                                                                               |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| Functions, methods, variables, parameters, modules, namespaces, fields, properties | `PascalCase`                                                   | `ExecuteTransaction`, `UserAccountConfiguration`                                                                   |
+| Structs, enums, classes, interfaces/traits/protocols, type aliases, records        | `Pascal_Snake_Case`                                            | `Database_Connection_Pool`, `Network_Status_Code`                                                                  |
+| Constants and statics (compile-time/immutable)                                     | `SCREAMING_SNAKE_CASE`                                         | `MAX_RETRY_THRESHOLD`                                                                                                |
+| Acronyms                                                                           | stay fully capitalized inside the convention                     | `GetHTTPResponse`, `TargetURL`, `URLGrabber`, `XMLHTTPRequest`, `HTTP_Request_Payload`, `FETCH_TIMEOUT_MS` |
+| Language keywords/literals                                                         | untouched lowercase (or the language's own case: Python`True`) | `if`, `return`                                                                                                     |
 
 Why: every user-defined token starts with a capital, so keywords (lowercase) and your own names are visually separated; the three shapes tell you at a glance whether a name is logic, a blueprint, or a fixed constant.
 
@@ -230,19 +226,18 @@ Items.Where((Item) => Item.IsActive).Select
 
 ## Configuration defaults (all overridable by the user)
 
-
-| Key                                                              | Default                                                                                |
-| ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------- |
-| `canvas_width`                                                   | 160 display columns                                                                    |
-| `indent_width` / `indent_style`                                  | 4 / spaces (smart tabs when tabs are required)                                         |
+| Key                                                                    | Default                                                                                |
+| ---------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `canvas_width`                                                       | 160 display columns                                                                    |
+| `indent_width` / `indent_style`                                    | 4 / spaces (smart tabs when tabs are required)                                         |
 | `monolith.max_statements` / `max_block_depth` / `max_containers` | 4 / 2 / 12 (newline-terminated languages: 1 statement)                                 |
-| `padding`                                                        | brace = 1 space; paren, bracket, angle = 0                                             |
-| `max_blank_lines`                                                | 1                                                                                      |
-| `grouping.scope` / `fusion`                                      | any chain / sole-child                                                                 |
-| `angle.enabled` / `angle.allow_grouping`                         | true / false                                                                           |
-| `hybrid.soft_indent_limit` / `hard_indent_limit`                 | 40 / 64 columns (25% / 40% of Canvas); beyond the hard limit use the concession layout |
-| `continuation`                                                   | newline (join where the language demands)                                              |
-| `embedded.<lang>.reindent`                                       | false                                                                                  |
+| `padding`                                                            | brace = 1 space; paren, bracket, angle = 0                                             |
+| `max_blank_lines`                                                    | 1                                                                                      |
+| `grouping.scope` / `fusion`                                        | any chain / sole-child                                                                 |
+| `angle.enabled` / `angle.allow_grouping`                           | true / false                                                                           |
+| `hybrid.soft_indent_limit` / `hard_indent_limit`                   | 40 / 64 columns (25% / 40% of Canvas); beyond the hard limit use the concession layout |
+| `continuation`                                                       | newline (join where the language demands)                                              |
+| `embedded.<lang>.reindent`                                           | false                                                                                  |
 
 ## Reference map
 
@@ -250,4 +245,4 @@ Items.Where((Item) => Item.IsActive).Select
 - `references/edge-cases.md`: `<`/`>`, unpaired characters, comments, strings/templates/heredocs, preprocessors, markup, embedded languages, broken or partial code, Unicode/tabs, huge data, token repairs, generated files.
 - `references/language-guide.md`: detach-safety matrix and per-language profiles with examples; procedure for unknown languages.
 - `references/hybrid-form.md`: why Hybrid exists, the short-head rule, the Void limits, the Head Reduction Ladder, the concession layout, per-language handling, and how to talk about it.
-- `references/why-LAFS-beats-knr.md` & `references/why-olafs-beats-knr.md`: the formal case (metrics, theorems, geometry, cost model, "Worse is Better"). Read it only when the user asks you to justify or argue the style.
+- `references/why-LAFS-beats-knr.md` & `references/why-lafs-beats-knr.md`: the formal case (metrics, theorems, geometry, cost model, "Worse is Better"). Read it only when the user asks you to justify or argue the style.
